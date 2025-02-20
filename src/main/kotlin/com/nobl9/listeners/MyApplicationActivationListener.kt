@@ -1,4 +1,4 @@
-package com.github.nobl9.nobl9intellijplatformplugin.listeners
+package com.nobl9.listeners
 
 import com.intellij.openapi.application.ApplicationActivationListener
 import com.intellij.openapi.diagnostic.thisLogger

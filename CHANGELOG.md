@@ -1,6 +1,6 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# nobl9-intellij-platform-plugin Changelog
+# Nobl9 Plugin Changelog
 
 ## [Unreleased]
 ### Added

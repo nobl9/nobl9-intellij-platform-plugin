@@ -1,4 +1,4 @@
-package com.github.nobl9.nobl9intellijplatformplugin.toolWindow
+package com.nobl9.toolWindow
 
 import com.intellij.openapi.components.service
 import com.intellij.openapi.diagnostic.thisLogger
@@ -8,8 +8,8 @@ import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
 import com.intellij.ui.content.ContentFactory
-import com.github.nobl9.nobl9intellijplatformplugin.MyBundle
-import com.github.nobl9.nobl9intellijplatformplugin.services.MyProjectService
+import com.nobl9.MyBundle
+import com.nobl9.services.MyProjectService
 import javax.swing.JButton
 
 
