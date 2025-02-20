@@ -1,4 +1,4 @@
-package com.github.nieomylnieja.nobl9intellijplatformplugin
+package com.github.nobl9.nobl9intellijplatformplugin
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls

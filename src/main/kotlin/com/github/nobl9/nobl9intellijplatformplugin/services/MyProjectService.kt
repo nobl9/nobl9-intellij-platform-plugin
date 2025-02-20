@@ -1,9 +1,9 @@
-package com.github.nieomylnieja.nobl9intellijplatformplugin.services
+package com.github.nobl9.nobl9intellijplatformplugin.services
 
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
-import com.github.nieomylnieja.nobl9intellijplatformplugin.MyBundle
+import com.github.nobl9.nobl9intellijplatformplugin.MyBundle
 
 @Service(Service.Level.PROJECT)
 class MyProjectService(project: Project) {
