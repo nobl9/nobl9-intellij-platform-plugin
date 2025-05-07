@@ -17,7 +17,6 @@ import com.intellij.testFramework.fixtures.impl.CodeInsightTestFixtureImpl
 import org.junit.Assert
 import org.junit.ComparisonFailure
 import java.util.concurrent.atomic.AtomicBoolean
-import java.util.function.BooleanSupplier
 
 fun waitUntilFileOpenedByLspServer(project: Project, vFile: VirtualFile) {
     val topLevelFile = (vFile as? VirtualFileWindow)?.delegate ?: vFile
@@ -39,7 +38,7 @@ fun waitUntilFileOpenedByLspServer(project: Project, vFile: VirtualFile) {
 
         PlatformTestUtil.waitWithEventsDispatching(
             "LSP server not initialized in 10 seconds",
-            BooleanSupplier { fileOpened.get() || serverShutdown.get() }, 10
+            { fileOpened.get() || serverShutdown.get() }, 10
         )
         Assert.assertFalse("LSP server initialization failed", serverShutdown.get())
     } finally {
@@ -72,7 +71,7 @@ fun waitForDiagnosticsFromLspServer(project: Project, vFile: VirtualFile, timeou
 
         PlatformTestUtil.waitWithEventsDispatching(
             "Diagnostics from server for file ${vFile.name} not received in $timeout seconds",
-            BooleanSupplier { diagnosticsReceived.get() || serverShutdown.get() }, timeout
+            { diagnosticsReceived.get() || serverShutdown.get() }, timeout
         )
         Assert.assertFalse("LSP server initialization failed", serverShutdown.get())
     } finally {
