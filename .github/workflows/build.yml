@@ -95,6 +95,13 @@ jobs:
       # Setup Gradle
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+      # Install nobl9-language-server
+      - name: Install nobl9-language-server
+        run: |
+          VERSION=$(curl -fsSL https://api.github.com/repos/nobl9/nobl9-language-server/releases/latest | jq -r .tag_name | sed 's/^v//')
+          curl -fsSL -o nobl9-language-server "https://github.com/nobl9/nobl9-language-server/releases/download/v${VERSION}/nobl9-language-server-${VERSION}-linux-amd64"
+          chmod +x nobl9-language-server
+          sudo mv nobl9-language-server /usr/local/bin/
       # Run tests
       - name: Run Tests
         run: ./gradlew check
