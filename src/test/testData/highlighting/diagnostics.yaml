@@ -1,6 +1,7 @@
 apiVersion: n9/v1alpha
 kind: Project
 metadata:
-  name: this is a name
+  name: this
+  <error descr="unknown field \"project\"">project</error>: foo
 spec:
   description: it is super!
