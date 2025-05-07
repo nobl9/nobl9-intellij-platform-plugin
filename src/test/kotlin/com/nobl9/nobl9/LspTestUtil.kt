@@ -18,34 +18,6 @@ import org.junit.Assert
 import org.junit.ComparisonFailure
 import java.util.concurrent.atomic.AtomicBoolean
 
-fun waitUntilFileOpenedByLspServer(project: Project, vFile: VirtualFile) {
-    val topLevelFile = (vFile as? VirtualFileWindow)?.delegate ?: vFile
-    val disposable = Disposer.newDisposable()
-    try {
-        val fileOpened = AtomicBoolean()
-        val serverShutdown = AtomicBoolean()
-        LspServerManager.getInstance(project).addLspServerManagerListener(object : LspServerManagerListener {
-            override fun serverStateChanged(lspServer: LspServer) {
-                if (lspServer.state in arrayOf(ShutdownNormally, ShutdownUnexpectedly)) {
-                    serverShutdown.set(true)
-                }
-            }
-
-            override fun fileOpened(lspServer: LspServer, file: VirtualFile) {
-                if (file == topLevelFile) fileOpened.set(true)
-            }
-        }, disposable, sendEventsForExistingServers = true)
-
-        PlatformTestUtil.waitWithEventsDispatching(
-            "LSP server not initialized in 10 seconds",
-            { fileOpened.get() || serverShutdown.get() }, 10
-        )
-        Assert.assertFalse("LSP server initialization failed", serverShutdown.get())
-    } finally {
-        Disposer.dispose(disposable)
-    }
-}
-
 /**
  * @apiNote please note that in some cases it isn't enough to call the method once, see related method description
  * @see doCheckExpectedHighlightingData

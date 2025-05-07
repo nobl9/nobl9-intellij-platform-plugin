@@ -8,8 +8,7 @@ class CompletionTest : BasePlatformTestCase() {
 
     fun testCompletion() {
         myFixture.configureByFile("completion.yaml")
-        waitUntilFileOpenedByLspServer(myFixture.project, myFixture.file.virtualFile)
-
+        myFixture.doHighlighting() // Triggers LSP server to start.
         val completions = myFixture.completeBasic()
         assertTrue("No completions returned", completions != null && completions.isNotEmpty())
         val completionStrings = completions!!.map { it.lookupString }
@@ -17,8 +16,5 @@ class CompletionTest : BasePlatformTestCase() {
         assertTrue("n9/v1alpha" in completionStrings)
     }
 
-    override fun setUp() {
-        super.setUp()
-        myFixture.testDataPath = "src/test/testData/completion"
-    }
+    override fun getTestDataPath() = "src/test/testData/completion"
 }
