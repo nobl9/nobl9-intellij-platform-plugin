@@ -105,8 +105,6 @@ jobs:
       # Run tests
       - name: Run Tests
         run: |
-          export NOBL9_LANGUAGE_LOG_FILE_PATH=/usr/local/bin/n9.log
-          export NOBL9_LANGUAGE_LOG_LEVEL=TRACE
           ./gradlew check
       - name: Read log
         if: ${{ failure() }}
