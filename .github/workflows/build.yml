@@ -102,11 +102,15 @@ jobs:
           curl -fsSL -o nobl9-language-server "https://github.com/nobl9/nobl9-language-server/releases/download/v${VERSION}/nobl9-language-server-${VERSION}-linux-amd64"
           chmod +x nobl9-language-server
           sudo mv nobl9-language-server /usr/local/bin/
-          echo $PATH | grep -q "/usr/local/bin" && echo "/usr/local/bin is in PATH" || echo "/usr/local/bin is NOT in PATH"
-          echo "nobl9-language-server version: $(nobl9-language-server version)"
       # Run tests
       - name: Run Tests
-        run: ./gradlew check
+        run: |
+          export NOBL9_LANGUAGE_LOG_FILE_PATH=/usr/local/bin/n9.log
+          export NOBL9_LANGUAGE_LOG_LEVEL=TRACE
+          ./gradlew check
+      - name: Read log
+        if: ${{ failure() }}
+        run: cat /usr/local/bin/n9.log
       # Collect Tests Result of failed tests
       - name: Collect Tests Result
         if: ${{ failure() }}
