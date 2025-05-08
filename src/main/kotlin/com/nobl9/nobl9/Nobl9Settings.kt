@@ -10,7 +10,7 @@ import java.nio.file.Paths
 class Nobl9State {
     var executable = ""
     var logLevel = "trace"
-    var logFilePath = "/usr/local/bin/n9.log"
+    var logFilePath = ""
 }
 
 const val LANGUAGE_SERVER_NAME: String = "nobl9-language-server"

@@ -106,9 +106,13 @@ jobs:
       - name: Run Tests
         run: |
           ./gradlew check
-      - name: Read log
+        env:
+          NOBL9_LANGUAGE_SERVER_CLIENT_SECRET: ${{ secrets.NOBL9_LANGUAGE_SERVER_CLIENT_SECRET }}
+          NOBL9_LANGUAGE_SERVER_CLIENT_ID: ${{ vars.NOBL9_LANGUAGE_SERVER_CLIENT_ID }}
+          NOBL9_LANGUAGE_SERVER_LOG_FILE_PATH: /usr/local/n9.log
+      - name: Read server log (failure)
         if: ${{ failure() }}
-        run: cat /usr/local/bin/n9.log
+        run: cat /usr/local/n9.log
       # Collect Tests Result of failed tests
       - name: Collect Tests Result
         if: ${{ failure() }}
