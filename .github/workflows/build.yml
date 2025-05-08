@@ -114,7 +114,7 @@ jobs:
           path: ${{ github.workspace }}/build/reports/tests
       # Upload the Kover report to CodeCov
       - name: Upload Code Coverage Report
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           files: ${{ github.workspace }}/build/reports/kover/report.xml
   # Run Qodana inspections and provide report
