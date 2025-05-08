@@ -102,10 +102,17 @@ jobs:
           curl -fsSL -o nobl9-language-server "https://github.com/nobl9/nobl9-language-server/releases/download/v${VERSION}/nobl9-language-server-${VERSION}-linux-amd64"
           chmod +x nobl9-language-server
           sudo mv nobl9-language-server /usr/local/bin/
-          echo $PATH | grep -q "/usr/local/bin" && echo "/usr/local/bin is in PATH" || echo "/usr/local/bin is NOT in PATH"
       # Run tests
       - name: Run Tests
-        run: ./gradlew check
+        run: |
+          ./gradlew check
+        env:
+          NOBL9_LANGUAGE_SERVER_CLIENT_SECRET: ${{ secrets.NOBL9_LANGUAGE_SERVER_CLIENT_SECRET }}
+          NOBL9_LANGUAGE_SERVER_CLIENT_ID: ${{ vars.NOBL9_LANGUAGE_SERVER_CLIENT_ID }}
+          NOBL9_LANGUAGE_SERVER_LOG_FILE_PATH: /usr/local/n9.log
+      - name: Read server log (failure)
+        if: ${{ failure() }}
+        run: cat /usr/local/n9.log
       # Collect Tests Result of failed tests
       - name: Collect Tests Result
         if: ${{ failure() }}
@@ -148,7 +155,7 @@ jobs:
           java-version-file: ./.java-version
       # Run Qodana inspections
       - name: Qodana - Code Inspection
-        uses: JetBrains/qodana-action@v2024.2
+        uses: JetBrains/qodana-action@v2025.1
         with:
           cache-default-branch-only: true
   # Run plugin structure verification along with IntelliJ Plugin Verifier
