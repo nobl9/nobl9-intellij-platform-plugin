@@ -1,4 +1,4 @@
-package com.nobl9.nobl9.nobl9
+package com.nobl9.nobl9
 
 import com.intellij.execution.configurations.PathEnvironmentVariableUtil
 import com.intellij.openapi.components.*

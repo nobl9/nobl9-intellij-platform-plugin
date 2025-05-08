@@ -13,10 +13,9 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.ultimate</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
-
     <extensions defaultExtensionNs="com.intellij">
-        <platform.lsp.serverSupportProvider implementation="com.nobl9.nobl9.nobl9.Nobl9LanguageServerSupportProvider"/>
+        <platform.lsp.serverSupportProvider implementation="com.nobl9.nobl9.Nobl9LanguageServerSupportProvider"/>
+        <projectConfigurable groupId="tools" instance="com.nobl9.nobl9.Nobl9Configurable" displayName="Nobl9"/>
         <notificationGroup
                 id="Nobl9"
                 displayType="BALLOON"
