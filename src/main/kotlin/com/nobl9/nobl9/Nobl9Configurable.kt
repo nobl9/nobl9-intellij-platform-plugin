@@ -28,7 +28,7 @@ class Nobl9Configurable(private val project: Project) : Configurable {
         logFilePath.text = service.state.logFilePath
 
         val mainFormBuilder = FormBuilder.createFormBuilder()
-        mainFormBuilder.addLabeledComponent("LSP path", executable)
+        mainFormBuilder.addLabeledComponent("Language server executable path", executable)
         mainFormBuilder.addLabeledComponent("Log level", logLevel)
         mainFormBuilder.addLabeledComponent("Log file path", logFilePath)
         val wrapper = JPanel(BorderLayout())

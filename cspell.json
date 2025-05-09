@@ -1,0 +1,40 @@
+{
+  "allowCompoundWords": true,
+  "language": "en_US",
+  "dictionaries": [
+    "companies",
+    "misc",
+    "softwareTerms",
+    "bash",
+    "node",
+    "go",
+    "npm"
+  ],
+  "ignoreRegExpList": [
+    "/\\|\\s+[T|G]{2,}\\s+\\|/g",
+    "/https?:\\/\\/.*/g",
+    "/github.*/g"
+  ],
+  "ignorePaths": [
+    ".direnv/**",
+    ".kotlin/**",
+    ".idea/**",
+    ".intellijPlatform/**",
+    "build/**",
+    ".gradle/**",
+    "**/*.jar",
+    "shell.nix",
+    "gradlew*",
+    "gradle/**",
+    "build.gradle.kts"
+  ],
+  "words": [
+    "GOBIN",
+    "GOPATH",
+    "GOROOT",
+    "descr",
+    "nobl",
+    "nohup",
+    "qodana"
+  ]
+}

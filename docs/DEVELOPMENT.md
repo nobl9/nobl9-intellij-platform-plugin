@@ -12,7 +12,8 @@ If you see anything missing, feel free to contribute :)
 ### In the project
 
 1. Launch the project in any Intellij IDE.
-2. Depending on which Intellij IDE you have the license for, you should set it in TODO.
+2. Depending on which Intellij IDE you have the license for,
+   you should set it in TODO.
 3. Click in the top right corner to see _Run / Debug Configurations_.
 4. Select _Run Plugin_ configuration and run it.
 5. New Intellij window should be spawned with the plugin loaded inside.
