@@ -19,9 +19,35 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
+  check:
+    name: Basic checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v4
+      - name: Set up prerequisites - node and yarn
+        uses: actions/setup-node@v4
+      - name: Set up yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Check for trailing whitespaces
+        run: make check/trailing
+      - name: Check formatting
+        run: make check/format
+      - name: Check spelling
+        run: make check/spell
+      - name: Check markdown
+        run: make check/markdown
   # Prepare environment and build the plugin
   build:
     name: Build
+    needs: check
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.properties.outputs.version }}
@@ -54,7 +80,7 @@ jobs:
 
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "pluginVerifierHomeDir=~/.pluginVerifier" >> $GITHUB_OUTPUT
-          
+
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -104,8 +130,7 @@ jobs:
           sudo mv nobl9-language-server /usr/local/bin/
       # Run tests
       - name: Run Tests
-        run: |
-          ./gradlew check
+        run: ./gradlew check
         env:
           NOBL9_LANGUAGE_SERVER_CLIENT_SECRET: ${{ secrets.NOBL9_LANGUAGE_SERVER_CLIENT_SECRET }}
           NOBL9_LANGUAGE_SERVER_CLIENT_ID: ${{ vars.NOBL9_LANGUAGE_SERVER_CLIENT_ID }}

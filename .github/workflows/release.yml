@@ -4,7 +4,7 @@
 name: Release
 on:
   release:
-    types: [prereleased, released]
+    types: [ prereleased, released ]
 jobs:
   # Prepare and publish the plugin to JetBrains Marketplace repository
   release:
@@ -37,7 +37,7 @@ jobs:
           ${{ github.event.release.body }}
           EOM
           )"
-          
+
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -77,7 +77,7 @@ jobs:
           git checkout -b $BRANCH
           git commit -am "Changelog update - $VERSION"
           git push --set-upstream origin $BRANCH
-          
+
           gh label create "$LABEL" \
             --description "Pull requests with release changelog update" \
             --force \
