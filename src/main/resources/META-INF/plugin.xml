@@ -4,12 +4,6 @@
     <name>Nobl9</name>
     <vendor url="https://www.nobl9.com/">Nobl9</vendor>
 
-    <description><![CDATA[
-    Support for Nobl9 configuration files through
-    <a href="https://github.com/nobl9/nobl9-language-server">nobl9-language-server</a>
-    LSP integration
-    ]]></description>
-
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.ultimate</depends>
 
