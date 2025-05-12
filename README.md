@@ -8,13 +8,13 @@
 
 <!-- Plugin description -->
 Support for Nobl9 configuration files through
-[nobl9-language-server][language-server]
+[nobl9-language-server](https://github.com/nobl9/nobl9-language-server)
 LSP integration.
 <!-- Plugin description end -->
 
 ## Requirements
 
-[Nobl9 language server][language-server]
+[Nobl9 language server](https://github.com/nobl9/nobl9-language-server)
 executable has to be installed and either available in the path or
 specified via `nobl9.languageServerPath`.
 
@@ -39,7 +39,7 @@ This extension contributes the following settings:
 Nobl9 Language Server is currently in experimental stage,
 please report any bugs encountered,
 which are not directly related to the Nobl9 Intellij Platform plugin in the
-[Language Server's repository][language-server].
+[Language Server's repository](https://github.com/nobl9/nobl9-language-server).
 
 ## Installation
 
@@ -78,5 +78,3 @@ which are not directly related to the Nobl9 Intellij Platform plugin in the
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
-
-[language-server]: https://github.com/nobl9/nobl9-language-server
